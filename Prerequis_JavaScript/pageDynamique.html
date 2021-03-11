@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page dynamique</title>
+    <style>
+        * {
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        }
+    </style>
+    <script>
+        document.addEventListener("DOMContentLoaded", init, false); //Lance l'initialisation après le chargement du DOM. 
+        let prenom;
+        let paragraphe;
+
+        function init() {
+            document.getElementById("btn").addEventListener("click", reponseUsager);
+            prenom = document.getElementById("prenom");
+            paragraphe = document.getElementById("paragraphe");
+        }
+
+        function reponseUsager() {
+            let aujourdhui = new Date();
+            let heure = aujourdhui.getHours();
+            let prefix;
+            console.log(heure);
+            if (heure > 11 && heure < 18) {
+                prefix = "Bon après-midi ";
+            } else if (heure > 17) {
+                prefix = "Bonne soirée "
+            } else {
+                prefix = "Bon matin "
+            }
+            paragraphe.innerHTML = prefix + prenom.value;
+        }
+    </script>
+</head>
+
+<body>
+    <h1>Exemple de page dynamique</h1>
+    <input type="text" id="prenom" placeholder="Entrer votre Prénom">
+    <button id="btn">Cliquez ici</button>
+    <p id="paragraphe"></p>
+</body>
+
+</html>
